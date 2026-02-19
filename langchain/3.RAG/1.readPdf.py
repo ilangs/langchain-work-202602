@@ -4,10 +4,10 @@ from langchain_community.document_loaders import PyPDFLoader
 import os
 
 # 1. 경로를 지정하여 읽을 준비
-# 1) 절대 경로 (\ 대신에 / 사용)
+# 1) 고정된 절대 경로 (내 컴퓨터에서만 돌아감) (\ 대신에 / 사용)
 # loader = PyPDFLoader("C:/workAI/work/LangChain/3.RAG/data/Samsung_Card_Manual_Korean_1.3.pdf")
 
-# 2) 상대 경로
+# 2) 동적 절대 경로 (상대 경로를 기반으로 만든 동적 절대 경로)
 # os.path.abspath(__file__) => 현재 파일(__file__)의 전체 경로를 반환 해 주는 함수
 # os.path.dirname( ) => 그 전체 경로 중에서 폴더 경로만 반환 해주는 메서드
 current_dir = os.path.dirname(os.path.abspath(__file__)) # __file__ : 파이썬 파일의 경로
