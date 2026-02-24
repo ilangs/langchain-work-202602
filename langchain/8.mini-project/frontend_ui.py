@@ -134,7 +134,7 @@ elif menu == "운영 통계 대시보드":   #랭스미스
         
         st.divider()
         st.line_chart(df.set_index("timestamp")["latency"])  # 지연시간 추이 표
-        st.dataframe(df, use_container_width=True) # 전체 로그 출력
+        st.dataframe(df, width='stretch') # 전체 로그 출력
        
     # 통계 데이터가 없는 경우
     else:
