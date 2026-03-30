@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Jinja2 예제</title>
+</head>
+<body>
+  <h1>안녕하세요, {{ name }}님!</h1>
+  <h2>추천 영화 목록:</h2>
+  <ul>
+    {% for movie in movies %}
+      <li>{{ movie }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

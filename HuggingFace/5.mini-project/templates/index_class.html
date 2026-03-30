@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AI 영화 심리 처방전</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>🎬 영화별 맞춤 심리 처방 에이전트</header>
+  
+  <main>
+    <div id="chat-box"></div> <div id="input-area">
+      <input type="text" id="prompt" placeholder="지금 기분은 어떤가요?..." onkeypress="if(event.keyCode==13) sendMessage()">
+      <button onclick="sendMessage()">처방받기</button>
+    </div>
+  </main>
+
+  <script>
+    function addMessage(movies, sender) {
+      const box = document.getElementById("chat-box");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = "message " + sender;
+
+      if (sender === "bot") {
+        let html = '<div class="movie-cards">';
+        movies.forEach(m => {
+          // [핵심] '/' 기호를 HTML 줄바꿈 태그(<br>)로 변환하여 세로 정렬
+          const formattedReason = m.reason.split('/').join('<br>');
+          html += `
+            <div class="movie-card">
+              <img src="${m.poster}" alt="포스터">
+              <div class="card-content">
+                <p class="reason">${formattedReason}</p>
+                <div class="divider"></div>
+                <h3>${m.title}</h3>
+                <p class="rating">⭐ 평점: ${m.rating}</p>
+                <p class="desc">${m.desc}</p>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        msgDiv.innerHTML = html;
+      } else {
+        msgDiv.textContent = movies;
+      }
+      box.appendChild(msgDiv);
+      box.scrollTop = box.scrollHeight; // 항상 최신 메시지 보기
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("prompt");
+      if(!input.value) return;
+      addMessage(input.value, "user");
+      // 서버의 SSE 엔드포인트와 연결
+      const source = new EventSource(`/chat_stream?prompt=${encodeURIComponent(input.value)}`);
+      input.value = "";
+      source.onmessage = (e) => {
+        const res = JSON.parse(e.data);
+        if (res.status === "processing") addMessage(res.data, "bot");
+        else if (res.status === "complete") source.close();
+      };
+    }
+  </script>
+</body>
+</html>

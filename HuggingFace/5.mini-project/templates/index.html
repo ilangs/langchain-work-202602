@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AI 영화 심리 처방전</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>🎬 영화별 맞춤 심리 처방 에이전트</header>
+  
+  <main>
+    <div id="chat-box"></div> <div id="input-area">
+      <input type="text" id="prompt" placeholder="지금 기분은 어떤가요?..." onkeypress="if(event.keyCode==13) sendMessage()">
+      <button onclick="sendMessage()">처방받기</button>
+    </div>
+  </main>
+
+  <script>
+    function addMessage(data, sender) { // 'movies' 대신 'data'로 인자명 변경 (유연성)
+      const box = document.getElementById("chat-box");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = "message " + sender;
+
+      if (sender === "bot") {
+        let html = '<div class="movie-cards">';
+        // data가 영화 배열일 경우 처리
+        data.forEach(m => {
+          // [핵심] 백엔드에서 온 '/' 기호를 HTML 줄바꿈 태그로 변환
+          const formattedReason = m.reason.split('/').join('<br>');
+          
+          html += `
+            <div class="movie-card">
+              <div class="card-content">
+                <p class="reason">${formattedReason}</p>
+                <div class="divider"></div>
+                <img src="${m.poster}" alt="포스터" style="width:100%; border-radius:8px; margin-bottom:10px;">
+                <h3>${m.title}</h3>
+                <p class="rating">⭐ 평점: ${m.rating}</p>
+                <p class="desc">${m.desc}</p>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        msgDiv.innerHTML = html;
+      } else {
+        msgDiv.textContent = data;
+      }
+      box.appendChild(msgDiv);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("prompt");
+      if(!input.value) return;
+      
+      const userText = input.value;
+      addMessage(userText, "user");
+      input.value = "";
+
+      const source = new EventSource(`/chat_stream?prompt=${encodeURIComponent(userText)}`);
+      
+      source.onmessage = (e) => {
+        const res = JSON.parse(e.data);
+        if (res.status === "processing") {
+          addMessage(res.data, "bot"); // res.data 안에 영화 5편의 배열이 들어있음
+        } else if (res.status === "complete") {
+          source.close();
+        }
+      };
+
+      source.onerror = () => {
+        source.close();
+      };
+    }
+  </script>
+</body>
+</html>

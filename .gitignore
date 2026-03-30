@@ -230,4 +230,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# data file
+data/
+results/
+vit-test/
+memory_cached_index/
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,visualstudiocode,venv
