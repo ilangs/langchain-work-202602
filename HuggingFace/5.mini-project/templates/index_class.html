@@ -16,21 +16,21 @@
   </main>
 
   <script>
-    function addMessage(movies, sender) {
+    function addMessage(movies, sender) {//감정멘트(영화) 누가 보냈는지(user)
       const box = document.getElementById("chat-box");
-      const msgDiv = document.createElement("div");
-      msgDiv.className = "message " + sender;
+      const msgDiv = document.createElement("div");//div태그를 자동생성->추천받은 영화를 출력하기 위해서
+      msgDiv.className = "message " + sender; //각각의 div태그를 구분하기위해서 클래스명을 부여
 
-      if (sender === "bot") {
+      if (sender === "bot") {//AI가 보낸문자열이라면 
         let html = '<div class="movie-cards">';
-        movies.forEach(m => {
+        movies.forEach(m => { //추천받은 영화 5개중에서 하나씩 꺼내서
           // [핵심] '/' 기호를 HTML 줄바꿈 태그(<br>)로 변환하여 세로 정렬
           const formattedReason = m.reason.split('/').join('<br>');
           html += `
             <div class="movie-card">
               <img src="${m.poster}" alt="포스터">
               <div class="card-content">
-                <p class="reason">${formattedReason}</p>
+                <p class="reason">${formattedReason}</p> 
                 <div class="divider"></div>
                 <h3>${m.title}</h3>
                 <p class="rating">⭐ 평점: ${m.rating}</p>
@@ -40,24 +40,24 @@
           `;
         });
         html += '</div>';
-        msgDiv.innerHTML = html;
+        msgDiv.innerHTML = html;  //div태그를 만들어서 추천받은 영화목록을 출력
       } else {
         msgDiv.textContent = movies;
       }
-      box.appendChild(msgDiv);
+      box.appendChild(msgDiv);//부모태그에 결합해서 출력하라
       box.scrollTop = box.scrollHeight; // 항상 최신 메시지 보기
     }
 
     function sendMessage() {
-      const input = document.getElementById("prompt");
-      if(!input.value) return;
+      const input = document.getElementById("prompt"); // 입력받기
+      if(!input.value) return;//입력X 탈출 진행X
       addMessage(input.value, "user");
       // 서버의 SSE 엔드포인트와 연결
       const source = new EventSource(`/chat_stream?prompt=${encodeURIComponent(input.value)}`);
-      input.value = "";
+      input.value = "";//다시 입력받을 준비(초기화)
       source.onmessage = (e) => {
         const res = JSON.parse(e.data);
-        if (res.status === "processing") addMessage(res.data, "bot");
+        if (res.status === "processing") addMessage(res.data, "bot");//AI가 영화사이트에서 받아온 데이터
         else if (res.status === "complete") source.close();
       };
     }

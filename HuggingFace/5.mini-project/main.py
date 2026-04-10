@@ -21,6 +21,8 @@ from fastapi.responses import StreamingResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
+from fastapi.middleware.cors import CORSMiddleware  # CORS 추가
+
 # [1] 설정 로드
 load_dotenv()
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
@@ -30,6 +32,15 @@ app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory=str(BASE_DIR/"static")), name="static")
 templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
+
+# CORS 추가
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5174"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # [3] AI 모델 (온도를 약간 높여 공감 능력 향상)
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
@@ -56,7 +67,7 @@ async def analysis_node(state: AgentState):
     {{
         "emotion": "분석된 감정 키워드",
         "genre_code": 123,
-        "empathy_message": "사용자에게 전하는 따뜻한 세로 읽기 공감 멘트 (최대 3줄)"
+        "empathy_message": "사용자에게 전하는 따뜻한 세로 읽기 공감 멘트 (최대 2줄, 문장이 끝나는 마침표 뒤에서는 줄바꿈)"
     }}
     
     입력: "{state['user_input']}"
