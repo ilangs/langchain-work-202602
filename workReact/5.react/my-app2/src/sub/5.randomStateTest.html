@@ -1,0 +1,116 @@
+<!DOCTYPE html> <!-- HTML5 문서 선언 -->
+<html lang="ko"> <!-- 언어 설정 -->
+<head>
+  <meta charset="UTF-8" /> <!-- 한글 인코딩 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 반응형 -->
+  <title>State + Props + 이벤트</title> <!-- 제목 -->
+
+  <!-- React 라이브러리 -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- React DOM -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (JSX 변환) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- React 렌더링 영역 -->
+  <div id="root"></div>
+
+  <!-- JSX 사용 -->
+  <script type="text/babel">
+
+    // ✅ RandomNumber 자식 컴포넌트
+    const RandomNumber = (props) => {
+
+      // ✅ 랜덤값 생성 후 부모 함수 호출
+      const handleRandomClick = () => {
+        const randomValue = Math.round(Math.random() * 100); // 0~100 랜덤 정수
+        props.onUpdate(randomValue); // 부모의 updateValue 호출
+      };
+
+      return (
+        <div>
+          <h2>Random값: {props.number}</h2> {/* 부모에서 받은 값 출력 */}
+
+          {/* 클릭 시 랜덤값 생성 후 부모로 전달 */}
+          <button onClick={handleRandomClick}>
+            랜덤값 출력
+          </button>
+
+          {/* 매개변수 없는 부모 함수 호출 */}
+          <button onClick={props.onTest}>
+            부모함수 호출
+          </button>
+        </div>
+      );
+    };
+
+
+    // ✅ App2 부모 컴포넌트
+    const App2 = ({
+      headerTitle = "기본헤더",      // 기본값 설정
+      contentTitle = "기본제목",
+      contentBody = "기본본문"
+    }) => {
+
+      // ✅ React 객체에서 useState를 구조분해 할당으로 꺼냄
+      const { useState } = React;
+
+      // ✅ count 상태 (카운터)
+      const [count, setCount] = useState(0);
+
+      // ✅ 랜덤값 상태
+      const [value, setValue] = useState(0);
+
+      // ✅ 자식이 호출할 함수 (값 전달 받음)
+      const updateValue = (newValue) => {
+        setValue(newValue); // 상태 변경 → 자동 리렌더링
+      };
+
+      // ✅ 매개변수 없는 함수
+      const test = () => {
+        alert("매개변수 없는 부모함수가 호출되었습니다.");
+      };
+
+      return (
+        <div>
+          {/* 카운트 출력 */}
+          <h1>{count}</h1>
+
+          {/* 클릭 시 count 증가 */}
+          <button onClick={() => setCount(count + 1)}>
+            증가
+          </button>
+
+          <hr />
+
+          {/* 자식 컴포넌트에 props 전달 */}
+          <RandomNumber
+            number={value}       // 현재 값
+            onUpdate={updateValue} // 자식 → 부모 데이터 전달용 함수
+            onTest={test}        // 매개변수 없는 함수
+          />
+
+          <hr />
+
+          {/* 기본 props 테스트용 출력 */}
+          <h3>{headerTitle}</h3>
+          <h3>{contentTitle}</h3>
+          <h3>{contentBody}</h3>
+        </div>
+      );
+    };
+
+
+    // ✅ root 생성
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+    // ✅ 렌더링
+    root.render(<App2 />); // props 생략 → 기본값 사용
+
+  </script>
+</body>
+</html>

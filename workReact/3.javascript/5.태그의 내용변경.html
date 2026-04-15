@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.태그의 내용 변경.html</title>
+    <script>
+        /* def change()
+           1.일반함수 function 호출할 함수명(~) {내용}
+           2.익명함수 let(=const) 변수명 = function(~) {처리 내용}
+           3.화살표 함수를 사용(ReAct)
+        */
+        // function change(){
+        // let change = function() {
+        // const change = function() {
+        const change = () => {
+            // alert("change 함수 호출") -> 디버깅용
+            // div 태그 중에서 id가 test2인 것을 찾아서 내용을 변경시켜 달라
+            // 형식) document.getElementById('id값')
+            let ch = document.getElementById("test2") // 태그정보(=객체)
+            // let ch = document.querySelector("#test2"); // #id값
+            alert(ch); // [object(객체) HTMLDivElement]
+            alert(ch.innerHTML);
+            // innerHTML(태그의 내용을 꺼내올때 사용하는 속성)
+            // ch.innerHTML="화면상에 동적으로 변경됨!!!";
+            let input = prompt("변경시킬문자열을 입력하세요?");
+            ch.innerHTML = input;
+            // 글자색변경(동적)=>태그정보.상위속성명.하위속성명=변경할값
+            ch.style.color="blue";
+        }
+    </script>
+</head>
+<body>
+    <!-- div#test{자바스크립트의 특징,let,const 차이점} -->
+    <div id="test">자바스크립트의 특징,let,const 차이점</div>
+    <div id="test2">DOM의 개요 및 활용!</div>
+    <p></p>
+    <form >
+        <!-- 이벤트처리시 호출되는 함수의 배개변수의 경우(문자열은 '' 사용)
+          같은 태그에서 id 속성을 이용
+          1) CSS의 id 선택자
+          2) javascript에서의 특정태그를 구분하는 키워드로 인식 ex)주민등록번호
+        -->
+        <input type="button" value="변경" id="imsi" onclick="alert('이벤트처리')">
+        <input type="button" value="변경2" id="imsi2" onclick="change()">
+    </form>
+</body>
+</html>

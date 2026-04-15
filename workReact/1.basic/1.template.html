@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- html:5 입력하고 enter (html 구조를 만들어 준다) -->
+    <!-- ctrl+/ html 주석 -->
+    <!-- 태그 안쪽에 주석을 달면 에러 발생 가능성 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSC의 단축키</title>
+</head>
+<body>
+    <h3>vscode에서 자주 사용되는 단축키</h3>
+    <ol>
+        <!-- 마우스 오는쪽 버튼 클릭 Open with Live Server -->
+        <li>html문서 템플릿 작성법->html 파일 작성후 
+            ! enter or html:5 enter
+        </li>
+        <li>태그 작성하는 방법=>태그이름 enter => 자동완성기능 
+            ex) div enter
+            <div></div>
+        </li>
+        <li>태그를 여러개 생성하는 방법->태그명*n(반복할 수)
+            ex) div*5 =>div+div+div+div+div
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>태그 중첩해서 생성하는 방법=>태그명>태그명2>태그명3
+            ex) div>ul>ol*3
+            <div>
+                <ul>
+                    <ol></ol>
+                    <ol></ol>
+                    <ol></ol>
+                </ul>
+            </div>
+        <li>인접한 태그 생성하는 방법=>태그명+태그명2+태그명3
+            ex) div+h1+h2+h3+span
+              <div></div>
+              <h1></h1>
+              <h2></h2>
+              <h3></h3>
+              <span></span>
+        </li>
+        <!-- CSS와 연관있는 html 태그 -->
+        <li>아이디 선택자 설정=>태그명#아이디명 
+            ex) div#name 생성=>뒤에 div#name{내용추가}
+            <div id="name">내용추가</div>
+        </li>
+        <li>클래스 선택자설정=>태그명.클래스명
+            ex) div.test
+            <div class="test"></div>
+        </li>
+        <li>태그{입력하고 싶은 텍스트} 입력후 enter or tab
+            ex) p{안녕하세요}
+            <p>안녕하세요</p>
+        </li>
+        <li>숫자삽입(숫자 1씩증가)
+            =>태그명#아이디명$*n, 태그명.클래스명$*n, 태그명{텍스트$}.클래스명$*n
+            ex) div{텍스트$}.test$*3
+            <div class="test1">텍스트1</div>
+            <div class="test2">텍스트2</div>
+            <div class="test3">텍스트3</div>
+        </li>
+        <li>^p 앞쪽 1개 태그 건너 계층과 동일계층에 배치(여러번 사용가능)=>^태그명
+            ex) div>ul>li^p
+            <div>
+                <ul>
+                    <li></li>
+                </ul>
+                <p></p>
+            </div>
+        </li>
+        <li>^^p 앞쪽 2개 태그 건너 계층과 동일계층에 배치=>^^태그명
+            ex) div>ul>li^^p
+            <div>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <p></p>
+        </li>
+        <li>+p 동일계층에 추가=>+태그명
+            ex) div>ul>li+p
+             <div>
+                <ul>
+                    <li></li>
+                    <p></p>
+                </ul>
+             </div>
+        </li>
+        <li>(태그>태그,,,) 그룹단위 배치, 맨 마지막 그룹은 괄호 생략 필수
+            ex) div>(ul>li)+ol>li
+            <div>
+                <ul>
+                    <li></li>
+                </ul>
+                <ol>
+                    <li></li>
+                </ol>
+            </div>
+        </li>
+        <!-- 복수선택자 -->
+        <li>자동 완성 div#myid.classA.classB 입력후 enter (id와 클래스를 동시에 생성)
+            ex) div#myid.classA.classB
+            <div id="myid" class="classA classB"></div>
+        </li>
+    </ol>
+</body>
+</html>

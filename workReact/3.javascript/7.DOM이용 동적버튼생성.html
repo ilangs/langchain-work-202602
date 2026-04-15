@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.DOM을 이용해서 동적버튼 생성.html</title>
+    <script>
+        //전역변수 ->모든 함수에서 공통으로 사용이 되는 변수
+        let count = 0 //div태그를 생성할 갯수
+
+        function appendItem(){ //추가
+            count = count + 1 //버튼클릭할때 하나씩 증가
+            //1.div태그 생성=><div></div>,<h1></h1>
+            //형식) document.createElement(생성할 태그이름)
+            let newItem = document.createElement("div")
+            //alert(newItem)
+            //2.<div id="item_"+count(생성번호)></div>
+            //2)형식) 생성한 태그정보.setAttribute(속성명,값)
+            newItem.setAttribute("id","item_"+count)
+            //3.텍스트노드 생성->1.createTextNode(내용작성) 2.innerHTML속성->내용이 많을때
+            //<시작>내용</종료>  <시작></종료> =><시작 />
+            let html='새로 추가된 아이템['+count+']'+
+            '<input type="button" value="삭제" '+
+            'onclick="removeItem('+count+')" />';
+            //결합
+            newItem.innerHTML = html
+            //5.부모태그의 정보를 얻어온다.(부모위치)
+            let itemListNode = document.getElementById("itemList")
+            //6.부모태그에 결합=>부모태그명.appendChild(생성된 태그(자식태그))
+            itemListNode.appendChild(newItem)
+        }
+        //function removeItem(idCount){
+        const removeItem = (idCount) => { //삭제시키는 방법
+          let item = document.getElementById("item_"+idCount)//삭제시킬 태그
+          //appendChild<->부모태그명.removeChild(삭제시킬 태그명)
+          //부모태그를 얻어오는 방법2=>자식태그명.parentNode(부모)
+          item.parentNode.removeChild(item)
+        }
+    </script>
+</head>
+<body>
+    <!-- 
+      동적디자인 ->처음에는 없는데 특정한 이벤트를 발생시켜서 화면에
+                 특정위치에 출력시키는 방법(메모리에 저장->특정위치에 출력)=>리엑트(가상 돔)(자동)
+      정적디자인 -> html,css(있는 그대로 보여주는 디자인 방법)
+    -->
+    <input type="button" value="추가" onclick="appendItem()">
+    <div id="itemList">
+        <!-- 
+         <div id="item_1">새로 추가된 아이템1[삭제버튼]</div>
+         <div id="item_2">새로 추가된 아이템2[삭제버튼]</div>
+         ...
+        -->
+    </div>
+</body>
+</html>

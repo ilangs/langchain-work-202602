@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.toggle.html</title>
+    <script>
+        // 네이버 버튼을 누르면 카카오 버튼으로 바뀌는 코드 
+        const toggle = () => {  // React 화살표 함수 형식
+            
+            let btn = document.getElementById("b_name").value;
+            
+            // 1번째 방법
+            // document.form객체명.입력양식객체명(버튼이름).속성명
+            // if (btn=="네이버")
+            //   document.f.b_name.value = "카카오"
+            // else
+            //   document.f.b_name.value = "네이버"
+            
+            // 2번째 방법
+            // 간단한 한줄은 3항연산자 추천
+            let text = (btn == "네이버")?"카카오":"네이버" 
+            document.f.b_name.value = text
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h2>버튼을 눌러 주세요</h2>
+        <form name="f">
+            <input type="button" value="네이버" id="b_name" onclick="toggle()">
+        </form>
+    </center>
+</body>
+</html>

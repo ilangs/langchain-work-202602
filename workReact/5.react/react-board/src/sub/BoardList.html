@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>게시글 목록</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Noto Sans KR (한글 최적화 폰트) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* 전체 폰트를 Noto Sans KR로 설정 */
+    body { font-family: 'Noto Sans KR', sans-serif; }
+  </style>
+</head>
+
+<!-- 전체 페이지 배경: 연한 회색(gray-100), 최소 높이 전체 화면, flex 세로 중앙 배치 -->
+<body class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4">
+
+  <!-- 카드 컨테이너: 흰 배경, 둥근 모서리, 그림자, 최대 너비 5xl, 전체 너비 -->
+  <div class="bg-white rounded-3xl shadow-md w-full max-w-5xl px-12 py-10">
+
+    <!-- ── 헤더 영역: 제목+설명(좌) / 검색창(우) 양쪽 정렬 ── -->
+    <div class="flex items-start justify-between mb-10">
+
+      <!-- 제목 블록 -->
+      <div>
+        <!-- 페이지 메인 타이틀: 굵고 큰 글씨 -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-1">게시글 목록</h1>
+
+        <!-- 총 게시글 수 안내 텍스트 -->
+        <p class="text-sm text-gray-400">
+          총
+          <!-- 게시글 수 강조: 파란색(blue-500) -->
+          <span class="text-blue-500 font-semibold">10</span>
+          개의 게시글이 있습니다.
+        </p>
+      </div>
+
+      <!-- 검색창 래퍼: 상대 위치(아이콘 절대 배치용) -->
+      <div class="relative w-80">
+        <!-- 돋보기 아이콘: 절대 위치로 입력창 왼쪽에 배치 -->
+        <span class="absolute inset-y-0 left-4 flex items-center text-gray-400">
+          <!-- SVG 돋보기 아이콘 -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
+
+        <!-- 검색 입력창: 왼쪽 패딩으로 아이콘과 겹치지 않게, 회색 배경, 둥근 모서리 -->
+        <input
+          type="text"
+          placeholder="제목으로 검색..."
+          class="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-2xl text-sm text-gray-500
+                 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300
+                 transition"
+        />
+      </div>
+    </div>
+
+    <!-- ── 테이블 전체 컨테이너 ── -->
+    <table class="w-full text-left">
+
+      <!-- 테이블 헤더 -->
+      <thead>
+        <tr class="border-b border-gray-100">
+          <!-- NO 컬럼: 좁은 너비, 회색 작은 글씨, 대문자 -->
+          <th class="w-24 pb-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">
+            NO.
+          </th>
+
+          <!-- SUBJECT 컬럼: 제목 영역, 가장 넓게 -->
+          <th class="pb-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">
+            SUBJECT
+          </th>
+
+          <!-- AUTHOR 컬럼: 오른쪽 정렬 -->
+          <th class="w-36 pb-3 text-xs font-semibold text-gray-400 uppercase tracking-widest text-right">
+            AUTHOR
+          </th>
+        </tr>
+      </thead>
+
+      <!-- 테이블 본문 -->
+      <tbody>
+
+        <!-- ── 게시글 행 1 ── -->
+        <!-- 행 전체: 하단 구분선, 호버 시 배경색 변경 (UX 피드백) -->
+        <tr class="border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer">
+
+          <!-- 번호 셀: 회색 작은 글씨 -->
+          <td class="py-5 text-sm text-gray-400">1</td>
+
+          <!-- 제목 + 댓글 수 셀 -->
+          <td class="py-5">
+            <!-- 게시글 제목: 굵고 어두운 글씨 -->
+            <p class="text-base font-semibold text-gray-800 mb-1">게시글 제목 예시</p>
+            <!-- 댓글 수: 작고 연한 회색 -->
+            <p class="text-xs text-gray-400">3 Comments</p>
+          </td>
+
+          <!-- 작성자 배지: 오른쪽 정렬 -->
+          <td class="py-5 text-right">
+            <!-- 작성자 이름 배지: 파란색 계열 배경, 흰 글씨, 둥근 모서리 -->
+            <span class="inline-block bg-blue-400 text-white text-sm font-medium
+                         px-4 py-1.5 rounded-lg">
+              홍길동
+            </span>
+          </td>
+        </tr>
+
+        <!--
+          ✅ 게시글 행 추가 시 위 <tr>...</tr> 블록을 복사하여 붙여넣기
+             (번호, 제목, 댓글 수, 작성자만 변경)
+        -->
+
+      </tbody>
+    </table>
+
+    <!-- ── 페이지네이션 영역: 가운데 정렬, 위 마진 ── -->
+    <div class="flex justify-center items-center gap-2 mt-10">
+
+      <!--
+        페이지 번호 버튼:
+        - 활성(현재 페이지): 파란색 배경(bg-blue-400), 흰 글씨
+        - 비활성: 투명 배경, 회색 글씨
+        - 공통: 정사각형(w-10 h-10), 둥근 모서리, 호버 효과
+      -->
+
+      <!-- 현재 페이지 버튼 (활성 상태) -->
+      <button class="w-10 h-10 flex items-center justify-center rounded-lg
+                     bg-blue-400 text-white font-semibold text-sm
+                     shadow-sm hover:bg-blue-500 transition">
+        1
+      </button>
+
+      <!-- 비활성 페이지 버튼 예시 (2페이지) -->
+      <!-- <button class="w-10 h-10 flex items-center justify-center rounded-lg
+                       text-gray-500 font-semibold text-sm
+                       hover:bg-gray-100 transition">
+        2
+      </button> -->
+
+    </div>
+
+  </div><!-- /카드 컨테이너 end -->
+
+</body>
+</html>

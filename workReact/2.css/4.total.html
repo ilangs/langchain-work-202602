@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>초급 Tailwind AI 대시보드</title>
+</head>
+<!-- h-screen(화면 전체 높이 100vh) flex(flexbox 레이아웃 사용) flex-col(세로방향 정렬) -->
+<body class="bg-gray-50 h-screen flex flex-col font-sans">
+    <!-- 서론 -->
+    <!-- header>h1{AI Agent DashBoard} -->
+    <!-- border-b(아래쪽 테두리) py-4(위아래 padding 1rem) shadow-sm(작은 그림자) -->
+    <header class="bg-white border-b py-4 shadow-sm">
+        <!-- text-center(가운데 정렬) text-xl(글자크기) font-extrabold(아주 굵게) -->
+        <h1 class="text-center text-xl font-extrabold text-blue-700">AI Agent DashBoard</h1>
+    </header>
+    <!-- 본문 -->
+    <!-- main>section>h2{분석 설정}+div>div>label{기업명}+input^^button{분석 시작} -->
+     <!-- flex-1(공간 전체 사용) flex-col(기본 세로 정렬) md:flex-row(화면이 md 이상이면 가로 정렬) -->
+    <main class="flex-1 p-6 flex flex-col md:flex-row gap-6">
+        <!-- rounded-2xl(큰 둥근 모서리) md:w-1/3(md 이상이면 1/3 너비 사용 설정) -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 md:w-1/3">
+            <h2 class="font-bold text-gray-800 mb-4">분석 설정</h2>
+            <!-- space-y-4(내부 요소들 사이의 세로 간격) -->
+            <div class="space-y-4">
+                <div>
+                    <!-- block(블록요소 vs 인라인요소) text-xs(글자크기 x-samll)-->
+                    <label class="block text-xs font-semibold text-gray-500 mb-1">기업명</label>
+                    <!-- w-full(너비 100% 사용) focus:ring-2(포커스시 테두리 효과) focus:ring-blue-400 (포커스시 파란색링)-->
+                    <input type="text" class="w-full border p-2 rounded-md outline-none focus:ring-2 focus:ring-blue-400" placeholder="삼성전자">
+                </div>
+                <!-- hover:bg-blue-700(커서 올리면 색상 변경) transition(색상이 150ms~200ms 동안 서서히 변화 애니메이션) -->
+                <button class="w-full bg-blue-600 text-white py-2 rounded-md font-bold hover:bg-blue-700 transition">분석 시작</button>
+            </div>
+        </section>
+        <!-- article>h2{작업 현황}+div>p{&gt;[에이전트] 대기 중...}+p{&gt; [에이전트] 분석 요청을 기다리고 있습니다.} -->
+        <article class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex-1">
+            <h2 class="font-bold text-gray-800 mb-4">작업 현황</h2>
+            <!-- h-48(높이 height 고정) overflow-y-auto(내용이 보여줄 것이 많으면 자동으로 스크롤) -->
+            <div class="bg-gray-900 p-4 rounded-xl text-green-400 font-mono text-sm h-48 overflow-y-auto">
+                <p>&gt; [에이전트] 대기 중...</p>
+                <p>&gt; [에이전트] 분석 요청을 기다리고 있습니다.</p>
+            </div>
+        </article>
+    </main>
+    <!-- 꼬리말 -->
+    <!-- footer{2026 AI Agent Veteran Developer Team Leader} -->
+     <!-- border-t(위쪽 테두리) -->
+    <footer class="bg-white p-4 text-center border-t text-gray-400 text-xs">
+        &copy; 2026 AI Agent Veteran Developer Team Leader
+    </footer>
+</body>
+</html>

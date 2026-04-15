@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.var,let,const의 차이점2.html</title>
+</head>
+<body>
+    <script>
+        /*
+            const => 상수화, 값이 저장되면 중간에 값이 변경할 수 없음(일반변수),
+                     예외)객체인 경우(값은 변경 O -> 주소값은 불변)
+            
+            1)const를 사용할 때에는 반드시 상수화된 변수에 초기값을 설정 해야 한다. (대문자)
+               => const FOO = 123 선언과 동시에 값을 저장
+            ex) let foo 선언만 
+                foo = 123 값은 나중에
+            2)중간에 값을 변경할 수가 없다. (상수이기에)
+
+            let,var,const의 공통점 => 변수에 값을 저장 O
+            let,const의 공통점 => 1) 둘다 중복선언 x
+                                 2) 블럭내부에 변수를 선언-> 블럭내부에서만 사용(외부사용X)
+            let,const의 차이점=> 값을 변경 or 변경X
+
+        */
+
+        // let foo = 123; // 변수선언과 동시에 값을 저장시킨형태(초기화)
+        let foo;   // 변수선언(데이터를 저장시킬 공간만 만들어놓은 상태)
+        foo = 789; // 초기화(값을 처음 저장)
+        foo = 123; // 값을 변경 저장
+        document.write("foo=>"+foo+"<br>");  // 123
+        
+        document.write("========const 실습======<p>");
+        const TOO = 123;  // 변수선언하면서 초기값 부여=>리액트(함수선언,객체생성)
+        // TOO = 456; -> 에러 발생
+        document.write("TOO=>"+TOO+"<br>");  // 123
+        {
+          const TOO = 456;  // 중복선언X=>똑같은 변수 두번생성X
+          const BAR = 456;  // 지역변수(블럭내부에서만 사용이 된 변수)
+          document.write("BAR=>"+BAR+"<br>");  // 456
+        }
+        document.write("블럭밖에서 TOO=>"+TOO+"<br>");  // 123
+        // 블럭바깥에서는 블럭안쪽의 변수 참조 불가  
+        // document.write("블럭밖에서 사용?BAR=>"+BAR+"<br>"); -> 에러 발생
+    </script>
+</body>
+</html>

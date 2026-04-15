@@ -1,0 +1,35 @@
+
+📁 최종 완성 디렉토리 구조
+
+react-board2/src/ 
+ ├── api/ 
+ │ ├── axios.js ← 인터셉터 (토큰 자동 첨부 + 재발급) 
+ │ └── auth.js ← login, logout, register, getCurrentUser 
+ ├── pages/ 
+ │ ├── Login.jsx ← 로그인 폼 
+ │ ├── UserForm.jsx ← 회원가입 폼 
+ │ ├── PostList.jsx ← 목록 + 검색 + 페이지네이션
+ │ ├── PostDetail.jsx ← 상세 + 댓글
+ │ └── PostForm.jsx ← 작성/수정 통합
+ └── components/ 
+   ├── Navbar.jsx ← 공통 헤더 
+   ├── PrivateRoute.jsx ← 인증 보호 라우트 
+   ├── PostCard.jsx ← 목록 카드 
+   ├── Pagination.jsx ← 페이지 번호 
+   ├── CommentList.jsx ← 댓글 목록 + 수정/삭제 
+   └── CommentForm.jsx ← 댓글 입력 폼
+
+
+📌 페이지별 데이터 흐름 요약
+
+App.jsx (user 전역 상태)
+ ├─ user, onLogout → Navbar (모든 페이지)
+ ├─ onLogin → Login.jsx
+ │ ├─ PostList.jsx
+ │ └─ PostCard.jsx (클릭 → /posts/:id)
+ │ └─ Pagination.jsx
+ │ ├─ PostDetail.jsx
+ │ ├─ CommentForm.jsx (댓글 작성)
+ │ └─ CommentList.jsx (댓글 수정/삭제)
+ │ └─ PostForm.jsx (작성 + 수정 통합)
+

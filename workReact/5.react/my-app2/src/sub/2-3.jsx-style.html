@@ -1,0 +1,49 @@
+<!-- 1) 속도가 느리다. -->
+<!-- 2) 디버깅 에러처리가 어렵다.(자바스크립트 전통적인 방법) -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <!-- React 18 -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 함수형 컴포넌트
+    function App() {
+      // 스타일 객체 (camelCase 필수)
+      const css1 = {
+        color: 'red',
+        backgroundColor: '#f0f0ff',
+        fontSize: '2em'
+      };
+
+      const css2 = {
+        color: 'blue',
+        backgroundColor: '#fff0ff',
+        fontSize: '2em'
+      };
+
+      return (
+        <div>
+          <p style={css1}>React의 개요 및 작성법(환경설정)</p>
+          <p style={css2}>React의 변수, 이벤트처리, 스타일적용(JSX)</p>
+        </div>
+      );
+    }
+
+    // React 18 렌더링 방식
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

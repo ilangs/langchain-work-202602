@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.var,let,const의 차이점1.html</title>
+</head>
+<body>
+    <script>
+        /*
+            자료형x => 데이터를 저장할 때 저장할 데이터의 종류와 크기를 지정하는 것
+            ㄴ JS에서는 자동으로 알아서 저장 => 에러 잡기 어려움 -> 그래서 TS 사용
+            var name = "홍길동"  // String name="홍길동"(자바)
+            var의 특징
+            ㄴ 1.중복 선언 가능 (=재정의)=>권장x => 2개가 생성->에러잡기x
+            ㄴ 2.블럭내부에 선언된 변수의 값을 외부에서 출력 가능
+        */
+        var foo = 123 // int foo = 123
+        document.write("foo=>"+foo+"<br>")  // 123
+         // if foo==123
+        { // 블럭지정->범위를 지정해서 처리해야 되는 경우
+           // 선언된 변수가 어디까지 사용할 수 있는지 범위응 지정해 주는 것
+           var foo = 789 // 중복선언 
+        }
+        document.write("두번째 foo=>"+foo+"<br>")  // 789
+
+        document.write("=== let의 특징 ===<br>")
+        let foo2 = 789
+        document.write("foo2=>"+foo2+"<br>")  // 789
+        // 디버깅=>에러를 잡아주는 방법중의 하나
+        console.log("foo2=>"+foo2)
+        {
+            let foo2 = 456 //중복선언 X
+            let bar = 789  //지역변수(블럭내에서만 사용이 되는 변수)
+        }
+        document.write("블럭밖에서의 foo2=>"+foo2+"<br>")   // 789
+        document.write("블럭밖에서 사용? bar=>"+bar+"<br>")  // 에러발생
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입</title>
+    <!-- cdn -->
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<!-- items-center(세로 방향 가운데 정렬)  justify-center(가로 방향 가운데 정렬) h-screen(화면 전체 높이 차) -->
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <!-- 로그인 박스 -->
+     <!-- shadow-lg(큰 그림자효과) rounded-lg(모서리 둥글게) p-8(안쪽여백 2rem) w-full(가로전체) 
+          max-w-sm (최대 너비:작은 박스 크기)-->
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-sm">
+        <h2 class="text-2xl font-bold text-center mb-6">회원가입</h2>
+
+        <!-- 아이디 입력-->
+        <!-- div>label{아이디}+input -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="username">이름</label>
+            <!-- px-3 py-2 좌우 0.75rem ,상하 0.5rem 여백 rounded (모서리 둥글게)-->
+            <input type="text" id="username" placeholder="이름 입력"
+                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+        <!-- 이메일 입력-->
+        <!-- div>label{이메일}+input -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="username">이메일</label>
+            <!-- px-3 py-2 좌우 0.75rem ,상하 0.5rem 여백 rounded (모서리 둥글게)-->
+            <input type="email" id="username" placeholder="이메일 입력"
+                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+  
+        <!-- 비밀번호 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="password">비밀번호</label>
+            <!-- px-3 py-2 좌우 0.75rem ,상하 0.5rem 여백 rounded (모서리 둥글게)-->
+            <input type="password" id="password" placeholder="비밀번호 입력"
+                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+        <!-- 비밀번호 확인 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="password">비밀번호 확인</label>
+            <!-- px-3 py-2 좌우 0.75rem ,상하 0.5rem 여백 rounded (모서리 둥글게)-->
+            <input type="password" id="password" placeholder="비밀번호 다시 입력"
+                class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+        <!-- 버튼 -->
+         <!-- button{회원가입} -->
+          <button class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">회원가입</button>
+
+        <!-- 로그인으로 돌아가기 -->
+        <!-- div>a{로그인으로 돌아가기} -->
+         <!-- text-center(중앙에 배치) mt-4(위쪽여백) text-sm(작은 글자 크기)-->
+        <div class="flex justify-center mt-4 text-sm text-blue-600">
+            <a href="5.login.html">로그인으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>

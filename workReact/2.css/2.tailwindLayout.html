@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tailwind 기초 실습2</title>
+</head>
+<body class="bg-gray-100 p-10">
+    <!-- flex(가로 정렬) gap-4(요소 간의 간격 설정 16px) -->
+    <div class="flex gap-4">
+        <!-- flex-1(가로 분할 1:2의 1번째) border(기본 테두리) border-blue-200 (연한 파란색 테두리)-->
+        <div class="flex-1 bg-blue-100 p-4 rounded-md border border-blue-200">
+            <span class="font-bold text-blue-800">1.분석 설정</span>
+            <!-- text-sm(작은 글씨크기) -->
+            <p class="text-sm">기업 정보를 입력하는 곳</p>
+        </div>
+        <!-- flex-[2](가로 분할 1:2의 2번째) font-mono(고정폭 글꼴-코드스타일) text-xs(매우 작은 글씨) -->
+        <div class="flex-[2] bg-gray-900 p-4 rounded-md text-green-400 font-mono text-xs">
+            <span class="text-gray-500">// AI Agent Log</span>
+            <!-- mt-2(위쪽 여백 margin-top 8px) &gt;( > 기호)-->
+            <p class="mt-2">&gt; 시스템 준비 완료...</p>
+        </div>
+    </div>
+</body> 
+</html>

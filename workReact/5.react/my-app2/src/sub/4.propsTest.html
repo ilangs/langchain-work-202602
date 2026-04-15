@@ -1,0 +1,76 @@
+<!DOCTYPE html> <!-- HTML5 문서 선언 -->
+<html lang="ko"> <!-- 언어 설정 -->
+<head>
+  <meta charset="UTF-8" /> <!-- 한글 인코딩 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 반응형 -->
+  <title>React props 테스트</title> <!-- 탭 제목 -->
+
+  <!-- React 라이브러리 로드 -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- React DOM (화면 렌더링 담당) -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (JSX → JS 변환) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- React가 그려질 영역 -->
+  <div id="root"></div>
+
+  <!-- JSX 사용을 위해 Babel 설정 -->
+  <script type="text/babel">
+
+    // ✅ Header 컴포넌트 (자식1)
+    const Header = (props) => {  // props로 부모 데이터 받기
+      return (
+        <div>
+          <h1>{props.title}</h1> {/* 전달받은 title 출력 */}
+        </div>
+      );
+    };
+
+    // ✅ Content 컴포넌트 (자식2)
+    const Content = (props) => {  // props 받기
+      return (
+        <div>
+          <h2>{props.title}</h2> {/* 제목 출력 */}
+          <p>{props.body}</p>    {/* 본문 출력 */}
+        </div>
+      );
+    };
+
+    // ✅ App2 컴포넌트 (부모)
+    const App2 = ({ headerTitle, contentTitle, contentBody }) => {
+      return (
+        <div>
+          {/* 부모에서 직접 출력 */}
+          <h3>[ 부모에서 직접 출력 ]</h3>
+          <h2>{headerTitle}</h2>
+          <h2>{contentTitle}</h2>
+          <h2>{contentBody}</h2>
+
+          {/* 자식 컴포넌트에 props 전달 */}
+          <h3>[ 자식 컴포넌트에 props 전달 ]</h3>
+          <Header title={headerTitle} />
+          <Content title={contentTitle} body={contentBody} />
+        </div>
+      );
+    };
+
+    // ✅ root 생성 (React 18 방식)
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+    // ✅ App2 렌더링 + props 전달 (핵심)
+    root.render(
+      <App2
+        headerTitle="전달 연습" 
+        contentTitle="전달 연습2" 
+        contentBody="부모에서 자식으로 전달"
+      />
+    );
+
+  </script>
+</body>
+</html>

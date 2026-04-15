@@ -236,4 +236,7 @@ results/
 vit-test/
 memory_cached_index/
 
+# 모든 하위 폴더의 node_modules 제외
+**/node_modules/
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,python,visualstudiocode,venv

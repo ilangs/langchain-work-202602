@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /> <!-- 문자 인코딩 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 반응형 설정 -->
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CDN -->
+  <title>게시글 상세보기</title>
+</head>
+
+<body class="bg-gray-100 flex justify-center py-10"> 
+<!-- bg-gray-100: 연한 회색 배경 -->
+<!-- flex justify-center: 가운데 정렬 -->
+<!-- py-10: 위아래 여백 -->
+
+  <div class="w-[900px]"> 
+  <!-- w-[900px]: 전체 컨테이너 너비 고정 -->
+
+    <!-- ===================== 상단 게시글 카드 ===================== -->
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden"> 
+    <!-- bg-white: 흰 배경 -->
+    <!-- rounded-3xl: 큰 둥근 모서리 -->
+    <!-- shadow-lg: 그림자 -->
+    <!-- overflow-hidden: 내부 넘침 방지 -->
+
+      <!-- 헤더 -->
+      <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-8 text-white relative"> 
+      <!-- bg-gradient-to-r: 좌→우 그라데이션 -->
+      <!-- from-indigo-500 to-purple-600: 색상 -->
+      <!-- p-8: 패딩 -->
+      <!-- text-white: 글자색 -->
+      <!-- relative: 내부 absolute 기준 -->
+
+        <!-- 뒤로가기 버튼 -->
+        <button class="absolute left-6 top-6 bg-white/20 p-2 rounded-full"> 
+        <!-- absolute: 위치 고정 -->
+        <!-- left-6 top-6: 위치 -->
+        <!-- bg-white/20: 반투명 배경 -->
+        <!-- p-2: 내부 여백 -->
+        <!-- rounded-full: 원형 -->
+          ←
+        </button>
+
+        <!-- 수정/삭제 버튼 -->
+        <div class="absolute right-6 top-6 flex gap-2"> 
+        <!-- absolute: 위치 고정 -->
+        <!-- right-6 top-6: 위치 -->
+        <!-- flex gap-2: 버튼 간격 -->
+          
+          <button class="bg-white/20 px-4 py-1 rounded-lg"> 
+          <!-- px-4 py-1: 패딩 -->
+          <!-- rounded-lg: 둥근 모서리 -->
+            수정
+          </button>
+
+          <button class="bg-pink-400 px-4 py-1 rounded-lg"> 
+          <!-- bg-pink-400: 삭제 버튼 색 -->
+            삭제
+          </button>
+        </div>
+
+        <!-- 제목 -->
+        <h1 class="text-2xl font-bold mt-10"> 
+        <!-- text-2xl: 큰 글자 -->
+        <!-- font-bold: 굵게 -->
+        <!-- mt-10: 위 여백 -->
+          리액트와 테일윈드를 활용한 게시판 만들기
+        </h1>
+
+        <!-- 작성자 -->
+        <div class="flex items-center gap-4 mt-4"> 
+        <!-- flex: 가로 정렬 -->
+        <!-- items-center: 세로 중앙 -->
+        <!-- gap-4: 간격 -->
+        <!-- mt-4: 위 여백 -->
+
+          <span class="bg-white/20 px-3 py-1 rounded-full text-sm"> 
+          <!-- pill 형태 -->
+            🔥 김팀장
+          </span>
+
+          <span class="text-sm opacity-80"> 
+          <!-- opacity-80: 투명도 -->
+            ID: 171223456789
+          </span>
+        </div>
+      </div>
+
+      <!-- 본문 -->
+      <div class="p-10 text-gray-700 leading-relaxed"> 
+      <!-- p-10: 패딩 -->
+      <!-- text-gray-700: 글자색 -->
+      <!-- leading-relaxed: 줄 간격 -->
+
+        <p class="mb-4">안녕하세요. 글상세 보기 테스트 입니다.</p> 
+        <!-- mb-4: 아래 여백 -->
+
+        <p>
+          테일윈드 CSS의 utility class를 활용하면 별도의 CSS 파일 없이도  
+          이처럼 풍부한 디자인을 구현할 수 있습니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===================== 댓글 영역 ===================== -->
+    <div class="bg-white rounded-3xl shadow-lg mt-10 p-8"> 
+    <!-- mt-10: 위 여백 -->
+    <!-- p-8: 내부 여백 -->
+
+      <!-- 댓글 타이틀 -->
+      <div class="flex items-center gap-2 mb-6"> 
+      <!-- mb-6: 아래 여백 -->
+
+        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center"> 
+        <!-- w-8 h-8: 크기 -->
+        <!-- rounded-full: 원형 -->
+          💬
+        </div>
+
+        <h2 class="text-lg font-semibold">댓글 2</h2>
+      </div>
+
+      <!-- 댓글 1 -->
+      <div class="mb-8"> 
+      <!-- mb-8: 댓글 간격 -->
+
+        <div class="flex items-center gap-3 text-sm text-gray-500 mb-2"> 
+          <span class="font-semibold text-gray-800">초보개발자</span>
+          <span>2026. 04. 04.</span>
+        </div>
+
+        <p class="text-gray-700">
+          디자인이 너무 깔끔하고 좋네요! 잘 배웠습니다.
+        </p>
+      </div>
+
+      <!-- ===================== 댓글 입력 ===================== -->
+      <div class="border rounded-2xl p-6"> 
+      <!-- border: 테두리 -->
+      <!-- rounded-2xl: 둥근 모서리 -->
+      <!-- p-6: 내부 여백 -->
+
+        <input 
+          type="text"
+          placeholder="작성자 이름"
+          class="w-full border rounded-lg px-4 py-2 mb-4"
+        />
+        <!-- w-full: 전체 너비 -->
+        <!-- border: 테두리 -->
+        <!-- rounded-lg: 둥근 모서리 -->
+        <!-- px-4 py-2: 패딩 -->
+        <!-- mb-4: 아래 여백 -->
+
+        <div class="flex gap-4"> 
+        <!-- flex: 가로 배치 -->
+        <!-- gap-4: 간격 -->
+
+          <textarea 
+            placeholder="댓글을 남겨보세요..."
+            class="flex-1 border rounded-lg px-4 py-2 h-24"
+          ></textarea>
+          <!-- flex-1: 남은 영역 차지 -->
+          <!-- h-24: 높이 -->
+
+          <button class="bg-indigo-500 text-white px-6 rounded-lg"> 
+          <!-- bg-indigo-500: 버튼 색 -->
+          <!-- text-white: 글자색 -->
+          <!-- px-6: 좌우 패딩 -->
+          <!-- rounded-lg: 둥근 모서리 -->
+            등록
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

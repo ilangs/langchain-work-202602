@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 토글</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <!--
+        flex flex-col    : 자식 요소를 세로(열) 방향으로 정렬
+        items-center     : 가로축 기준 중앙 정렬
+        gap-4            : 자식 요소 사이 간격 16px
+    -->
+    <div class="flex flex-col items-center gap-4">
+        <!--
+                text-gray-600    : 회색 글자색
+                text-lg          : 글자 크기
+                font-medium      : 중간 굵기
+        -->
+        <p class="text-gray-600 text-lg font-medium">버튼을 눌러 주세요</p>
+        <!--
+            id="toggleBtn"   : JS에서 버튼을 선택하기 위한 식별자
+            bg-green-500     : 네이버 초록색 배경
+            hover:bg-green-600 : 마우스 오버 시 더 진한 초록색
+            text-white       : 흰색 글자
+            font-bold        : 굵은 글씨
+            py-3 px-8        : 상하 패딩 3, 좌우 패딩 8
+            rounded-xl       : 둥근 모서리
+            text-lg          : 글자 크기
+            transition-all   : 모든 속성에 트랜지션 효과
+            duration-300     : 트랜지션 시간 0.3초
+        -->
+        <button
+            id="toggleBtn"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-xl text-lg transition-all duration-300"
+            onclick="toggleButton()"
+        >
+            🟢 NAVER
+        </button>
+    </div>
+    
+    <script>
+        // 현재 버튼 상태를 추적하는 변수 (true = 네이버, false = 카카오)
+        let isNaver = true;
+
+        function toggleButton() {
+            // id가 "toggleBtn"인 요소를 가져옴
+            const btn = document.getElementById("toggleBtn");
+
+            if (isNaver) {
+                // 네이버 → 카카오 로 변경
+                btn.textContent = "🟡 KAKAO";
+
+                // 기존 네이버 색상 클래스 제거
+                btn.classList.remove("bg-green-500", "hover:bg-green-600");
+
+                // 카카오 노란색 클래스 추가
+                btn.classList.add("bg-yellow-400", "hover:bg-yellow-500", "text-black");
+
+                // 흰색 글자 제거 (카카오는 검정 글자)
+                btn.classList.remove("text-white");
+
+            } else {
+                // 카카오 → 네이버 로 변경
+                btn.textContent = "🟢 NAVER";
+
+                // 카카오 색상 클래스 제거
+                btn.classList.remove("bg-yellow-400", "hover:bg-yellow-500", "text-black");
+
+                // 네이버 초록색 클래스 추가
+                btn.classList.add("bg-green-500", "hover:bg-green-600", "text-white");
+            }
+
+            // 상태 반전
+            isNaver = !isNaver;
+        }
+    </script>
+
+</body>
+</html>
+
+<!-- 
+**코드 흐름 요약**
+
+버튼 클릭
+    ↓
+toggleButton() 실행
+    ↓
+isNaver 상태 확인
+    ↓
+true(네이버)  →  텍스트/색상을 카카오로 변경  →  isNaver = false
+false(카카오) →  텍스트/색상을 네이버로 변경  →  isNaver = true
+ -->

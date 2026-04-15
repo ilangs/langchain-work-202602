@@ -1,0 +1,60 @@
+<!DOCTYPE html> <!-- HTML5 선언 -->
+<html lang="ko"> <!-- 한국어 설정 -->
+<head>
+  <meta charset="UTF-8" /> <!-- 인코딩 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 반응형 -->
+  <title>React CDN - App2</title>
+
+  <!-- React core -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- React DOM -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (JSX 변환) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- React가 렌더링될 영역 -->
+  <div id="root"></div>
+
+  <!-- JSX 사용 -->
+  <script type="text/babel">
+
+    // ✅ Header 컴포넌트 -> export, import 불필요
+    const Header = () => {
+      return (
+        <div>Header</div>
+      );
+    };
+
+    // ✅ Content 컴포넌트
+    const Content = () => {
+      return (
+        <div>
+          <h2>Content</h2>
+          <p>Hey!</p>
+        </div>
+      );
+    };
+
+    // ✅ App2 컴포넌트 (부모)
+    const App2 = () => {
+      return (
+        <div>
+          <Header />   {/* 자식 컴포넌트 */}
+          <Content />  {/* 자식 컴포넌트 */}
+        </div>
+      );
+    };
+
+    // ✅ root 생성 (React 18 방식)
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+    // ✅ App2 렌더링
+    root.render(<App2 />);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.변수의 개요 및 작성법.html</title>
+    <script>
+        /*
+        사용자로부터 이름,나이를 입력받아서 출력
+        var name = "홍길동";
+        window.alert(name) // 객체=>눈에 보이는 모든 사물을 지칭, 윈도우창(window객체)
+        */
+
+        // input(파이썬)
+        // 매개변수 ㅇ 반환값 ㅇ
+        var name = prompt("당신의 이름을 입력해주세요") //사용자로부터 값을 입력->처리(내장함수)
+        var age = prompt("당신의 나이를 입력해주세요")
+        document.write("name 변수의 값=>"+name+"입니다.<br>")
+        document.write("당신의 나이는 ?=>"+age+"살 이군요.<br>")
+        alert(name+age)
+    </script>
+</head>
+<body>
+    <!-- body이 document객체라고 한다. -->
+    <script>
+        document.writeln(name)
+    </script>
+    <ol>
+        <li>변수(variable)=>사용자로부터 값을 입력(문자,숫자,논리값)
+            받아 RAM에 저장(주소값)->변수이름으로 저장,불러오기
+        </li>
+        <li>var 변수명(명사)=값으로 선언해서 사용</li>
+        <li>변수명은 대,소문자 구분(name,Name,NAME 모두 다르다)</li>
+        <li>출력구문:document(객체명).write(함수명)(출력구문)</li>
+        document.write(name) -> 단순 문자로 인식
+    </ol>
+</body>
+</html>

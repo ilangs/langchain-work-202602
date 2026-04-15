@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- React 18 -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 함수형 컴포넌트
+    function App() {
+      const item = "SD 카드";
+      const value = 12000;
+      const title = "서예";
+      const imgUrl = "http://uta.pw/shodou/img/28/214.png";
+
+      return (
+        <div>
+          <h1>{item} - {value}</h1>
+          <h1>{title}</h1>
+          <p>
+            <img src={imgUrl} alt="이미지" />
+          </p>
+        </div>
+      );
+    }
+    // React 18 렌더링 방식
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

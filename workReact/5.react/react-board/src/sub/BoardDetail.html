@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 상세보기</title>
+  <!-- Tailwind CSS CDN : React와 달리 HTML에서는 CDN으로 바로 사용 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans">
+
+  <!-- ── 전체 컨테이너 ── -->
+  <div class="max-w-3xl mx-auto px-6 py-12">
+
+    <!-- ── 히어로 카드 (파란 그라디언트) ── -->
+    <div class="bg-gradient-to-br from-indigo-600 to-violet-600 rounded-t-2xl px-9 pt-8 pb-8">
+
+      <!-- 상단: 뒤로가기 + 수정/삭제 버튼 -->
+      <div class="flex justify-between items-center mb-8">
+
+        <!-- 원형 뒤로가기 버튼 -->
+        <button class="w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white text-2xl flex items-center justify-center transition-all duration-200">
+          ‹
+        </button>
+
+        <!-- 수정 / 삭제 버튼 그룹 -->
+        <div class="flex gap-3">
+          <button class="bg-white/20 hover:bg-white/35 text-white text-sm font-medium px-5 py-2 rounded-xl transition-all duration-200">
+            수정하기
+          </button>
+          <!-- 글 삭제 버튼 : onclick으로 모달 표시 -->
+          <button
+            onclick="document.getElementById('modal').classList.replace('hidden', 'flex')"
+            class="bg-violet-700 hover:bg-violet-800 text-white text-sm font-bold px-5 py-2 rounded-xl transition-all duration-200">
+            글 삭제
+          </button>
+        </div>
+      </div>
+
+      <!-- 글 제목 -->
+      <h1 class="text-3xl font-black text-white text-center mb-7 leading-snug tracking-tight">
+        Tailwind CSS와 애니메이션 결합하기
+      </h1>
+
+      <!-- 작성자 배지 + 글번호 -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5">
+          <div class="w-7 h-7 rounded-full bg-white/30 flex items-center justify-center text-sm">
+            🔥
+          </div>
+          <span class="text-white text-sm font-bold tracking-wide">박민수</span>
+        </div>
+        <span class="text-white/70 text-xs font-medium tracking-widest uppercase">No. 2</span>
+      </div>
+    </div>
+
+    <!-- ── 본문 + 푸터 통합 카드 ── -->
+    <div class="bg-white rounded-b-2xl shadow-lg flex flex-col">
+
+      <!-- 본문 내용 -->
+      <div class="px-12 py-10 min-h-48">
+        <p class="text-slate-700 text-base leading-loose text-center">
+          Tailwind와 애니메이션 라이브러리 조합 방법을 소개합니다.
+        </p>
+      </div>
+
+      <!-- 푸터 -->
+      <footer class="border-t border-slate-200 px-6 py-4 flex justify-between items-center">
+        <span class="text-xs text-slate-400 tracking-wide">게시글 상세 정보 모드</span>
+        <span class="text-xs text-slate-400 italic tracking-wide">React CRUD System v1.0</span>
+      </footer>
+    </div>
+
+  </div><!-- /전체 컨테이너 -->
+
+
+  <!-- ── 삭제 확인 모달 ── -->
+  <!--
+    React 버전  : {showConfirm && <div>...</div>}  → 상태로 show/hide
+    HTML 버전   : hidden 클래스 추가/제거로 show/hide
+  -->
+  <div id="modal" class="hidden fixed inset-0 bg-black/45 z-50 items-center justify-center">
+    <div class="bg-white rounded-2xl px-10 py-9 w-80 text-center shadow-2xl">
+      <div class="text-4xl mb-3">🗑️</div>
+      <p class="text-slate-800 font-bold text-lg mb-2">글을 삭제하시겠습니까?</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7">
+        삭제된 글은 복구할 수 없습니다.<br>
+        정말 삭제하시겠습니까?
+      </p>
+      <div class="flex gap-3">
+        <!-- 취소 : hidden 클래스 추가 → 모달 숨김 -->
+        <button
+          onclick="document.getElementById('modal').classList.replace('flex', 'hidden')"
+          class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-600 hover:bg-slate-50 transition-all duration-200">
+          취소
+        </button>
+        <!-- 삭제 확인 : 실제 삭제 로직 연결 시 여기에 추가 -->
+        <button
+          onclick="document.getElementById('modal').classList.replace('flex', 'hidden')"
+          class="flex-1 py-2.5 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-sm font-bold transition-all duration-200">
+          삭제
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

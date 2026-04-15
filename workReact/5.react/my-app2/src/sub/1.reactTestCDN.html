@@ -1,0 +1,48 @@
+<!DOCTYPE html> <!-- HTML5 문서 선언 -->
+
+<html lang="ko"> <!-- 문서 언어 설정 (한국어) -->
+<head>
+  <meta charset="UTF-8" /> <!-- 한글 깨짐 방지 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- 반응형 설정 -->
+
+  <title>React CDN Example</title> <!-- 브라우저 탭 제목 -->
+
+  <!-- React 라이브러리 (핵심) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- React DOM (React를 실제 DOM에 렌더링) -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (JSX 문법을 브라우저가 이해할 수 있게 변환) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <!-- React의 컴포넌트가 부착되는 영역 => index.html --> 
+  <div id="root"></div>
+
+  <!-- JSX 사용을 위해 반드시 type="text/babel" 설정 -->
+  <script type="text/babel">
+    
+    // App 함수형 컴포넌트 정의 (Vite에서 작성한 App과 동일) => App.jsx
+    function App() {
+
+      // return 안에 JSX (HTML처럼 보이지만 JS 문법)
+      // 반드시 하나의 부모 태그로 감싸야 함.
+      return (
+        <div> {/* 최상위 부모 태그 */}
+          <h2>첫번째 방식으로 react 예제를 작성중</h2> {/* 제목 1 */}
+          <h2>리액트 문법 연습 중 ...</h2> {/* 제목 2 */}
+        </div>
+      );
+    }
+
+    // React 18 방식으로 root 생성 => main.jsx에서 처리
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+    // App 컴포넌트를 화면에 렌더링(<App></App> = <App />)
+    root.render(<App />); // 부착위치.render(뒤에 부착시킬 컴포넌트명)
+
+  </script>
+</body>
+</html>

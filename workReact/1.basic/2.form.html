@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 투자 분석기 - 입력부</title>
+</head>
+<body>
+    <!-- 시멘틱 태그 (서론) -->
+    <!-- header>h1{심층 기업 분석 AI} -->
+    <header>
+        <h1>심층 기업 분석 AI</h1>
+    </header>
+    <!-- main>section>h2{분석 대상 기업 입력} -->
+    <main>
+        <section>
+            <h2>분석 대상 기업 입력</h2>
+            <!-- form#analysis-form>div>label{기업명}[for=company-name]+input#company-name -->
+            <form id="analysis-form">
+                <div>
+                    <label for="company-name">기업명:</label>
+                    <input type="text" id="company-name" name="company" placeholder="예: 삼성전자" required>
+                </div>
+                <!-- div>label[for=report-type]{리포트 종류}+section#report-type[name=type]>option{재무분석}[value=financial]+option{최신 뉴스 요약}[value=news]+option{리스크 평가}[value=risk] -->
+                <div>
+                    <label for="report-type">리포트 종류:</label>
+                    <select id="report-type" name="type">
+                        <option value="financial">재무 분석</option>
+                        <option value="news">최신 뉴스 요약</option>
+                        <option value="risk">리스크 평가</option>
+                    </select>
+                    
+
+                </div>
+                <!-- button[type=submit]{AI 분석 시작} -->
+                <button type="submit">AI 분석 시작</button>
+            </form>
+        </section>
+
+        <!-- article#result-area>h3{분석 결과}+p{여기에 AI 에지전트 답변이 출력됩니다.} -->
+        <article id="result-area">
+            <h3>분석 결과</h3>
+            <p>여기에 AI 에이전트의 답변이 출력됩니다.</p>
+        </article>
+    </main>
+    <!-- footer>p{&copy; 2026 AI Agent Team Leader. All rights reserved.} -->
+    <footer>
+        <p>&copy; 2026 AI Agent Team Leader. All rights reserved.</p>
+    </footer>
+</body>
+</html>
