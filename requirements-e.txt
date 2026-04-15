@@ -43,11 +43,11 @@ pydantic-settings>=2.12.0
 numpy>=1.26.4
 pandas>=2.2.2
 
-# for 3.RAG -----------------------
+# for RAG -----------------------
 lxml>=5.3.0,<6.0.0
 beautifulsoup4>4.12.3,<5.0.0
 
-# for 4.Multi-Modal-RAG -----------
+# for Multi-Modal-RAG -----------
 torch==2.5.1+cu121
 transformers==4.44.0
 scikit-learn==1.5.1
@@ -73,3 +73,13 @@ slowapi==0.1.9
 limits==3.13.0
 reportlab==4.2.5
 sentencepiece==0.2.1
+
+# for MariaDB -------------------------
+PyMySQL==1.1.1
+
+
+# for JWT Auth ------------------------
+python-jose[cryptography]==3.3.0 
+passlib[bcrypt]==1.7.4 
+bcrypt==4.1.2
+email-validator==2.2.0
