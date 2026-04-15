@@ -1,6 +1,6 @@
 "# work"
 
-# Coding styudy 
+# Coding study 
  1. Langchain
  2. Python
  3. Hugging Face
